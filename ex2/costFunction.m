@@ -20,12 +20,22 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+% Cost
+tmp = 0;
+for i = 1:m
+	tmp = tmp - y(i) * log(sigmoid(theta' * X'(i))) - (1 - y(i)) * log(1 - sigmoid(theta' * X'(i)));
+end
 
+J = (1 / m) * tmp;
 
-
-
-
-
+% Gradient
+for j = 1:length(theta)
+	tmp = 0;
+	for i = 1:m
+		tmp = tmp + (sigmoid(theta' * X'(i)) - y(i)) * X(i, j);
+	end
+	grad(:, j) = (1 / m) * tmp;
+end
 
 % =============================================================
 
