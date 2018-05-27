@@ -25,7 +25,6 @@ tmp = 0;
 for i = 1:m
 	tmp = tmp - y(i) * log(sigmoid(theta' * (X(i, :))')) - (1 - y(i)) * log(1 - sigmoid(theta' * (X(i, :)')));
 end
-
 J = (1 / m) * tmp;
 
 % Gradient
