@@ -23,7 +23,7 @@ grad = zeros(size(theta));
 % Cost
 tmp = 0;
 for i = 1:m
-	tmp = tmp - y(i) * log(sigmoid(theta' * X'(i))) - (1 - y(i)) * log(1 - sigmoid(theta' * X'(i)));
+	tmp = tmp - y(i) * log(sigmoid(theta' * (X(i, :))')) - (1 - y(i)) * log(1 - sigmoid(theta' * (X(i, :)')));
 end
 
 J = (1 / m) * tmp;
@@ -32,9 +32,9 @@ J = (1 / m) * tmp;
 for j = 1:length(theta)
 	tmp = 0;
 	for i = 1:m
-		tmp = tmp + (sigmoid(theta' * X'(i)) - y(i)) * X(i, j);
+		tmp = tmp + (sigmoid(theta' * (X(i, :))') - y(i)) * X(i, j);
 	end
-	grad(:, j) = (1 / m) * tmp;
+	grad(j, 1) = (1 / m) * tmp;
 end
 
 % =============================================================
